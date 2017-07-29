@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load social_widgets %}
+{% block head_extra %}
+	{{form.media}}
+{% endblock head_extra %}
+
+{% block content %}
+<div class="col-sm-6">
+	<h1>Preview</h1>
+	<div class="content-preview">
+		<h3 id="preview-title"> </h3>
+		<p id="preview-content"></p> 
+	</div>
+</div>
+
+<div class="col-sm-5">
+		<h1> Form </h1>
+		<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+			{{form.as_p}}
+			<input type="Submit" class= "btn btn-primary" value="Create Post">
+		</form>
+</div>
+
+	<div class="col-sm-12">
+		<div class="col-sm-4 "> 
+			<h1> Facebook widget </h1> 
+			{% social_widget_render "facebook/likebox.html" locale="en_US" app_id=12345678 href="https://www.facebook.com/NASSCOMOfficial" height=300 colorscheme="light" force_wall=False header=True show_border=True show_faces=False stream=True width=250 %}
+		</div> 
+		<div class="col-sm-4"> 
+			<h1> Twiter widget </h1> 
+			{% social_widget_render "twitter/follow_button.html" username="BillGates" show_screen_name=True show_count=False size="medium" dnt=False %}
+
+			{% social_widget_render "twitter/share_button.html" href="http://www.twitter.com" username="BillGates"  %}
+		</div>
+		<div class="col-sm-4">
+			<h1> Google Plus widget </h1>
+			{% social_widget_render "google/plus_person_badge.html" language="en-US" href="https://plus.google.com/+SergeyBrin" layout="portrait" showcoverphoto=True showtagline=True theme="light" width=300 %}
+		</div>
+ 
+	</div> 
+
+{% endblock content %}
+	  
